@@ -166,10 +166,10 @@ bool Miller(ZZ p,int iteration)
         }
         if (mod != p - 1 && modulo(temp, ZZ(2)) == 0)
         {
-            return false;
+            return true; // no es primo
         }
     }
-    return true;
+    return false; //es primo
 }
 
 bool isPrime(ZZ p) {
@@ -208,14 +208,16 @@ void GK_searchPQ(ZZ &p, ZZ &q)
             p = rand()%100000;
             //p = rand();
         //} while ( isPrime(p) ); //true = no sea primo     false = es primo
-        } while ( PrimeNumber(p) ); //true = no sea primo     false = es primo
+        //} while ( PrimeNumber(p) ); //true = no sea primo     false = es primo
+        } while ( Miller(p,5) ); //true = no sea primo     false = es primo
 
         do
         {
             q = rand()%100000;
             //q = rand();
         //} while ( isPrime(q) ); //true = no sea primo     false = es primo
-        } while ( PrimeNumber(q) ); //true = no sea primo     false = es primo
+        //} while ( PrimeNumber(q) ); //true = no sea primo     false = es primo
+        } while ( Miller(q,5) ); //true = no sea primo     false = es primo
 
     } while(euclides(p,q) != 1);
 }
